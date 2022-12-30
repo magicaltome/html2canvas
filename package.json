@@ -6,7 +6,7 @@
   "module": "dist/html2canvas.esm.js",
   "typings": "dist/types/index.d.ts",
   "browser": "dist/html2canvas.js",
-  "version": "1.4.1",
+  "version": "1.4.1-patch",
   "author": {
     "name": "Niklas von Hertzen",
     "email": "niklasvh@gmail.com",
@@ -104,6 +104,7 @@
     "build:reftest-result-list": "ts-node scripts/create-reftest-result-list.ts",
     "build:create-reftest-list": "ts-node scripts/create-reftest-list.ts tests/reftests/ignore.txt build/reftests.ts",
     "build:reftest-preview": "webpack --config www/webpack.config.js",
+    "install": "npm run build",
     "release": "standard-version",
     "format": "prettier --write \"{src,www/src,tests,scripts}/**/*.ts\"",
     "lint": "eslint src/**/*.ts --max-warnings 0",
