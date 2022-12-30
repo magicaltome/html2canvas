@@ -104,7 +104,6 @@
     "build:reftest-result-list": "ts-node scripts/create-reftest-result-list.ts",
     "build:create-reftest-list": "ts-node scripts/create-reftest-list.ts tests/reftests/ignore.txt build/reftests.ts",
     "build:reftest-preview": "webpack --config www/webpack.config.js",
-    "install": "npm run build",
     "release": "standard-version",
     "format": "prettier --write \"{src,www/src,tests,scripts}/**/*.ts\"",
     "lint": "eslint src/**/*.ts --max-warnings 0",
