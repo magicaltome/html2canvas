@@ -6809,7 +6809,8 @@ var CanvasRenderer = /** @class */ (function (_super) {
             var newHeight = void 0;
             var newX = box.left;
             var newY = box.top;
-            if (container.intrinsicWidth / box.width < container.intrinsicHeight / box.height) {
+            // Check if we are width constrained (letterbox) or height constrained (pillarbox)
+            if (container.intrinsicWidth / container.intrinsicHeight > box.width / box.height) {
                 newWidth = box.width;
                 newHeight = container.intrinsicHeight * (box.width / container.intrinsicWidth);
                 newY = box.top + (box.height - newHeight) / 2;
