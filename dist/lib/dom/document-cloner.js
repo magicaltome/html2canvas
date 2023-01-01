@@ -141,6 +141,7 @@ var DocumentCloner = /** @class */ (function () {
             if (clone.loading === 'lazy') {
                 clone.loading = 'eager';
             }
+            exports.copyCSSStyles(node.style, clone);
         }
         if (node_parser_1.isCustomElement(clone)) {
             return this.createCustomElementClone(clone);

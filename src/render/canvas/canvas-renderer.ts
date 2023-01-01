@@ -278,20 +278,36 @@ export class CanvasRenderer extends Renderer {
             this.ctx.clip();
             // Support for object-fit
             // https://github.com/niklasvh/html2canvas/issues/2541
-            let newWidth;
-            let newHeight;
+            let newWidth = box.width;
+            let newHeight = box.height;
             let newX = box.left;
             let newY = box.top;
 
-            // Check if we are width constrained (letterbox) or height constrained (pillarbox)
-            if (container.intrinsicWidth / container.intrinsicHeight > box.width / box.height) {
+            if (image.style.objectFit === 'cover') {
+                // Check if we are width constrained (letterbox) or height constrained (pillarbox)
+                if (container.intrinsicWidth / container.intrinsicHeight > box.width / box.height) {
+                    newWidth = box.width;
+                    newHeight = container.intrinsicHeight * (box.width / container.intrinsicWidth);
+                    newY = box.top + (box.height - newHeight) / 2;
+                } else {
+                    newWidth = container.intrinsicWidth * (box.height / container.intrinsicHeight);
+                    newHeight = box.height;
+                    newX = box.left + (box.width - newWidth) / 2;
+                }
+            } else if (image.style.objectFit === 'contain') {
+                // Check if we are width constrained (letterbox) or height constrained (pillarbox)
+                if (container.intrinsicWidth / container.intrinsicHeight > box.width / box.height) {
+                    newWidth = container.intrinsicWidth * (box.height / container.intrinsicHeight);
+                    newHeight = box.height;
+                    newX = box.left + (box.width - newWidth) / 2;
+                } else {
+                    newWidth = box.width;
+                    newHeight = container.intrinsicHeight * (box.width / container.intrinsicWidth);
+                    newY = box.top + (box.height - newHeight) / 2;
+                }
+            } else if (image.style.objectFit === 'fill') {
                 newWidth = box.width;
-                newHeight = container.intrinsicHeight * (box.width / container.intrinsicWidth);
-                newY = box.top + (box.height - newHeight) / 2;
-            } else {
-                newWidth = container.intrinsicWidth * (box.height / container.intrinsicHeight);
                 newHeight = box.height;
-                newX = box.left + (box.width - newWidth) / 2;
             }
 
             this.ctx.drawImage(

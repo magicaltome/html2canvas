@@ -163,6 +163,8 @@ export class DocumentCloner {
             if (clone.loading === 'lazy') {
                 clone.loading = 'eager';
             }
+
+            copyCSSStyles(node.style, clone);
         }
 
         if (isCustomElement(clone)) {

@@ -1,6 +1,6 @@
 /*
  * html2canvas 1.4.1-patch <https://html2canvas.hertzen.com>
- * Copyright (c) 2022 Niklas von Hertzen <https://hertzen.com>
+ * Copyright (c) 2023 Niklas von Hertzen <https://hertzen.com>
  * Released under MIT License
  */
 (function () {
